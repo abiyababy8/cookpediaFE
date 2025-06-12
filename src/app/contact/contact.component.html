@@ -49,7 +49,7 @@
         </div>
         <div class="col-lg-1"></div>
         <div class="col-lg-4">
-            <form  class="border rounded shadow p-5">
+            <form  class="border rounded shadow p-5" [formGroup]="testimonyForm" (ngSubmit)="addTestimony()">
                 <h3>Client Testimony</h3>
                 <div class="mb-3 mt-5">
                     <input name="name" formControlName="name"  type="text" class="form-control" placeholder="Name">
