@@ -5,11 +5,12 @@ import { ApiService } from '../services/api.service';
 import { SearchPipe } from '../pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Router } from '@angular/router';
 // import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-recipes',
-  imports: [HeaderComponent, FooterComponent, SearchPipe, FormsModule,NgxPaginationModule],
+  imports: [HeaderComponent, FooterComponent, SearchPipe, FormsModule, NgxPaginationModule],
   templateUrl: './recipes.component.html',
   styleUrl: './recipes.component.css'
 })
@@ -19,8 +20,8 @@ export class RecipesComponent {
   cuisineArray: any = []
   mealsArray: any = []
   searchKey: string = ''
-   p: number = 1;
-  constructor(private api: ApiService) { }
+  p: number = 1;
+  constructor(private api: ApiService, private router:Router) { }
   ngOnInit() {
     this.getAllRecipes()
   }
@@ -56,7 +57,14 @@ export class RecipesComponent {
   filterByMealType(value: string) {
     this.allRecipes = this.allRecipesDummy.filter((item: any) => item['mealType'].includes(value))
   }
-  getAllItems(){
-    this.allRecipes=this.allRecipesDummy
+  getAllItems() {
+    this.allRecipes = this.allRecipesDummy
+  }
+  viewRecipe(id: any) {
+    if (sessionStorage.getItem("token")) {
+this.router.navigateByUrl(`/recipe/${id}/view`)
+    } else {
+      alert("Please login to explore more features!")
+    }
   }
 }

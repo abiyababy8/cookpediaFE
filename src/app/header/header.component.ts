@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
 export class HeaderComponent {
   isLoggedIn: boolean = false
   loginUserName = ""
+  constructor(private router: Router) { }
   ngOnInit() {
     if (sessionStorage.getItem('token')) {
       const userTemp: any = sessionStorage.getItem('user')
@@ -21,5 +22,10 @@ export class HeaderComponent {
       this.loginUserName = ""
     }
   }
-
+  logOutUser() {
+    sessionStorage.clear()
+    this.isLoggedIn = false
+    this.loginUserName = ""
+    this.router.navigateByUrl('/')
+  }
 }
