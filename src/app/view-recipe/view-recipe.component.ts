@@ -71,7 +71,15 @@ export class ViewRecipeComponent {
       // 2) generate PDF
       this.generatepdf()
     })
-
-
+  }
+  saveRecipe() {
+    this.api.saveRecipeApi(this.recipe_id, this.recipe).subscribe({
+      next: (res: any) => {
+        alert(`${this.recipe.name} added successfully to your collection!`)
+      },
+      error: (reason: any) => {
+        alert(reason.error)
+      }
+    })
   }
 }

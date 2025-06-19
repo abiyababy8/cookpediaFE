@@ -1,1 +1,29 @@
-<p>saved-recipes works!</p>
+<app-header></app-header>
+<div class="container">
+    <h2 class="text-center text-success my-5">Your Saved Recipe Collections</h2>
+    <div class="row">
+        @if (allRecipes.length>0) {
+        <!-- each card  -->
+        @for(item of allRecipes; track $index){
+        <div class="col-lg-4">
+            <div class="p-3">
+                <img [src]="item.image" class="card-img-top" alt="...">
+                <!-- <img src={{item.image}}
+                        class="card-img-top" alt="..."> -->
+                <div class="card-body d-flex justify-content-between align-items-center mt-2">
+                    <h5 class="card-title"> {{item.name}}</h5>
+                    <button class="btn" (click)="deleteRecipe(item._id)"><i class="fa-solid fa-trash text-danger"></i></button>
+                </div>
+            </div>
+        </div>
+        }
+        }
+        @else {
+        <div class="d-flex align-items-center justify-content-center mb-5">
+            <h4 class="text-secondary">Your Recipe Collection is Empty!</h4>
+            <button class="btn btn-warning ms-3" routerLink="/all-recipes">ADD MORE</button>
+        </div>
+        }
+    </div>
+</div>
+<app-footer></app-footer>
