@@ -1,1 +1,13 @@
-<p>profile works!</p>
+<app-header></app-header>
+<div class="container my-5">
+    <div >
+        <h3 class="mb-3">My Profile</h3>
+        <label for="">
+            <input type="file" (change)="getFile($event)">
+            <img [src]="profileimage" alt="" height="200px" width="200px">
+        </label>
+        <br>
+        <button class="btn btn-success" (click)="uploadProfilePic()">Upload Profile Pic</button>
+    </div>
+</div>
+<app-footer></app-footer>

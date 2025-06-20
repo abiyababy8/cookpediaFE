@@ -58,4 +58,8 @@ export class ApiService {
   removeSavedRecipeApi(recipe_id: string) {
     return this.http.delete(`${this.server_url}/recipe/${recipe_id}/remove`, this.appendToken())
   }
+  //upload profile pic
+  editUserApi(reqBody:any){
+    return this.http.post(`${this.server_url}/user/edit`,reqBody,this.appendToken())
+  }
 }
