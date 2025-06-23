@@ -34,6 +34,9 @@ export class LoginComponent {
           if (res.user.role === 'User') {
             this.router.navigateByUrl('/')
           }
+          else {
+            this.router.navigateByUrl('/admin')
+          }
         },
         error: (reason: any) => {
           console.log(reason.error)

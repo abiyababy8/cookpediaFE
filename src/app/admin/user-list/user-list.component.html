@@ -1,1 +1,27 @@
-<p>user-list works!</p>
+<div class="row">
+    <!-- side menu bar  -->
+    <div class="col-lg-2">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-lg-10">
+        <h2>All Users List</h2>
+        <table class="table shadow my-5">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>E Mail</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of allUsers; track $index; let i=$index) {
+                <tr>
+                    <td>{{i+1}}</td>
+                    <td>{{item.username}}</td>
+                    <td>{{item.email}}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
