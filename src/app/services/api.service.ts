@@ -66,7 +66,19 @@ export class ApiService {
   getAllUserApi() {
     return this.http.get(`${this.server_url}/all-users`, this.appendToken())
   }
-  getAllDownloadsApi(){
-    return this.http.get(`${this.server_url}/all-downloads`,this.appendToken())
+  getAllDownloadsApi() {
+    return this.http.get(`${this.server_url}/all-downloads`, this.appendToken())
+  }
+  //get feedbacks
+  getAllFeedbacksApi() {
+    return this.http.get(`${this.server_url}/all-feedbacks`, this.appendToken())
+  }
+  //update feedback status
+  updateFeedbackStatusApi(feedbackId: any, status: any) {
+    return this.http.get(`${this.server_url}/feedback/${feedbackId}/update?status=${status}`, this.appendToken())
+  }
+  // get approved feedbacks
+  getApprovedFeedbacksApi(){
+    return this.http.get(`${this.server_url}/all-approved-feedbacks`)
   }
 }

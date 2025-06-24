@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -7,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrl: './recipe-list.component.css'
 })
 export class RecipeListComponent {
-
+  allRecipes: any = []
+  constructor(private api: ApiService) { }
+  ngOnInit() {
+    this.getAllRecipes()
+  }
+  getAllRecipes() {
+    this.api.getAllRecipesApi().subscribe((res: any) => {
+      console.log("All Recipes:")
+      console.log(res)
+      this.allRecipes = res
+    })
+  }
 }
