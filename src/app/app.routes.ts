@@ -9,11 +9,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { SavedRecipesComponent } from './saved-recipes/saved-recipes.component';
 import { ViewRecipeComponent } from './view-recipe/view-recipe.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     //path for lazy loading
     {
-        path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+        path: 'admin', canActivate: [authGuard], loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
     },
     //define path to load a specific component
 
@@ -23,7 +24,7 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'all-recipes', component: RecipesComponent },
-    { path: 'profile', component: ProfileComponent },
+    { path: 'profile', canActivate: [authGuard], component: ProfileComponent },
     { path: 'saved-recipe', component: SavedRecipesComponent },
     { path: 'recipe/:id/view', component: ViewRecipeComponent },
     //manage path that not defined- we use wild card path

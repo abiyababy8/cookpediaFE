@@ -9,7 +9,12 @@ import { RequestListComponent } from './request-list/request-list.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { ManageRecipeComponent } from './manage-recipe/manage-recipe.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-
+import { SearchPipe } from '../pipes/search.pipe';
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { HighchartsChartModule } from 'highcharts-angular'
 
 @NgModule({
   declarations: [
@@ -23,7 +28,13 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    SearchPipe,
+    FormsModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    HighchartsChartModule
   ]
 })
 export class AdminModule { }

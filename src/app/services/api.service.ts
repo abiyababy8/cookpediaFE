@@ -78,7 +78,41 @@ export class ApiService {
     return this.http.get(`${this.server_url}/feedback/${feedbackId}/update?status=${status}`, this.appendToken())
   }
   // get approved feedbacks
-  getApprovedFeedbacksApi(){
+  getApprovedFeedbacksApi() {
     return this.http.get(`${this.server_url}/all-approved-feedbacks`)
+  }
+  addRecipeApi(body: any) {
+    return this.http.post(`${this.server_url}/add-recipe`, body, this.appendToken())
+  }
+  editRecipeApi(id: any, reqBody: any) {
+    return this.http.put(`${this.server_url}/recipe/${id}/edit`, reqBody, this.appendToken())
+  }
+  deleteRecipeApi(id: any) {
+    return this.http.delete(`${this.server_url}/recipe/${id}/delete`, this.appendToken())
+  }
+  getChartData() {
+    this.getAllDownloadsApi().subscribe((res: any) => {
+      console.log('data for graph')
+      console.log(res)
+      let downloadArray = []
+      let output: any = {}
+      res.forEach((item: any) => {
+        let cuisine = item.recipeCuisine;
+        let currentCount = item.count;
+        if (output.hasOwnProperty(cuisine)) {
+          output[cuisine] += currentCount
+        }
+        else {
+          output[cuisine] = currentCount
+        }
+      })
+      console.log(output)
+      for (let cuisine in output) {
+        downloadArray.push({ name: cuisine, y: output[cuisine] })
+      }
+      console.log('Final data for graph:')
+      console.log(downloadArray)
+      sessionStorage.setItem('chart', JSON.stringify(downloadArray))
+    })
   }
 }

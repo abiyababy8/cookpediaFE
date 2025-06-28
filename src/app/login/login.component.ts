@@ -34,8 +34,13 @@ export class LoginComponent {
           if (res.user.role === 'User') {
             this.router.navigateByUrl('/')
           }
-          else {
+          else if(res.user.role === 'Admin') {
+            this.api.getChartData()
             this.router.navigateByUrl('/admin')
+
+          }
+          else{
+            alert('Invalid form!')
           }
         },
         error: (reason: any) => {

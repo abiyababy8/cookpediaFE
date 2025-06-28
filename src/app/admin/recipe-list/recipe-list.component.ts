@@ -9,6 +9,7 @@ import { ApiService } from '../../services/api.service';
 })
 export class RecipeListComponent {
   allRecipes: any = []
+  searchKey: string = ''
   constructor(private api: ApiService) { }
   ngOnInit() {
     this.getAllRecipes()
@@ -18,6 +19,11 @@ export class RecipeListComponent {
       console.log("All Recipes:")
       console.log(res)
       this.allRecipes = res
+    })
+  }
+  removeRecipe(id: any) {
+    this.api.deleteRecipeApi(id).subscribe((res: any) => {
+      this.getAllRecipes()
     })
   }
 }
