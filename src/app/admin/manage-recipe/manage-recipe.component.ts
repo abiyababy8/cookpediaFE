@@ -47,8 +47,32 @@ export class ManageRecipeComponent {
       })
     }
   }
-
-
+  addIngredients(data: any) {
+    if (data.value) {
+      this.ingredients.push(data.value)
+      data.value = ""
+      console.log("Ingredients:")
+      console.log(this.ingredients)
+    }
+  }
+  removeIngredient(value: string) {
+    this.ingredients = this.ingredients.filter((item: string) => {
+      return item !== value
+    })
+  }
+  addInstructions(data: any) {
+if(data.value){
+  this.instructions.push(data.value)
+  data.value=""
+  console.log("Instructions:")
+      console.log(this.instructions)
+}
+  }
+   removeInstruction(value: string) {
+    this.instructions = this.instructions.filter((item: string) => {
+      return item !== value
+    })
+  }
   mealTypeSelect(event: any) {
     if (event.target.checked) {
       !this.mealsArray.includes(event.target.name) && this.mealsArray.push(event.target.name)
